@@ -32,5 +32,12 @@ class Blog(models.Model,ReadNumExpand):
         return self.author.email
     def __str__(self):
         return self.title
+    @property
+    def get_read_nums(self):
+        ct = ContentType.objects.get_for_model(self)
+        readnum = ReadNum.objects.get(content_type=ct, object_id=self.id)
+        return readnum.read_num
     class Meta:
         ordering = ['-create_time']
+    
+

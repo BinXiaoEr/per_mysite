@@ -5,7 +5,6 @@
 {% load like_tags %}
 {% block header %}
     <link rel="stylesheet" href="{% static '/css/blog.css' %}">
-    {# <link rel="stylesheet" type="text/css" href="{% static 'css/code.css' %}">语法高亮#}
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
     <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% endblock %}
@@ -15,7 +14,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
+            <div class="col-sm-8 col-xs-12 col-md-8">
                 <h3>{{ blog.title }}</h3>
                 <ul class="blog-info-desc">
                     <li>作者：{{ blog.author }}</li>
@@ -31,7 +30,7 @@
                         </span>
                         </div>
                     </li>
-		</ul>
+		        </ul>
                 <div class="blog-context">{{ blog.content|custom_markdown}}</div>
                 
                 <div class="bloge-more">
@@ -57,9 +56,43 @@
                 </div>
                 <a href="{% url 'blog:show' %}">返回主页面</a>
             </div>
+            {% comment %} 右侧相关博客推荐 {% endcomment %}
+            <div class="hidden-xs col-sm-4 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">类别:{{blog.blog_type}}---文章推荐</div>
+                    <div class="panel-body">
+                        <ul class="blog_type">
+                            {% for guide_blog in guideblogs %}
+                                <li>
+                                  <a href="{% url 'blog:detail' guide_blog.id %}"> ->{{ guide_blog.title|slice:'15' }}....</a>
+                                </li>
+                            {% empty %}
+                                <li></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+             {# 其余博客分类推荐 #}
+             <div class="hidden-xs col-sm-4 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">博客分类</div>
+                    <div class="panel-body">
+                        <ul class="blog_type">
+                            {% for type in blog_types %}
+                                <li>
+                                    <a href="{% url 'blog:blog_type'  type.type_name %}">->{{ type.type_name }}-{{ type.blog_count }}篇</a>
+                                </li>
+                            {% empty %}
+                                <li>暂无分类</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
+            <div class="col-sm-8 col-xs-12 col-md-8">
                 <div class="comment-area">
                     <h3 class="comment-area-title">评论提交</h3>
                     {% if user.is_authenticated %}

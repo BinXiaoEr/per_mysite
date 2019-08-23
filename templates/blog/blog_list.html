@@ -17,7 +17,7 @@
                     {# 标题 #}
                     <div class="panel-heading">
                         {% block blog_list_title %}
-                            博客列表
+                          <a href="{% url 'blog:show' %}">按跟新时间</a>&nbsp;&nbsp;&nbsp; <a href="{% url 'blog:show_order' %}">按访问量</a>
                         {% endblock %}
                     </div>
                     {# 主体内容 #}
