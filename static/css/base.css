@@ -1,0 +1,41 @@
+body {
+    margin-top: 70px !important;
+}
+
+
+.home {
+    text-align: center;
+    /*position: absolute;*/
+    /*!*left: 50%;*!*/
+    /*top: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    font-size: 220%;
+    margin-top: 4em;
+    margin-bottom: 2em;
+}
+
+div#container {
+    margin: 0 auto;
+    min-width: 20em;
+    max-width: 30em;
+}
+
+.paginator {
+    text-align: center;
+}
+
+div.bloge-more {
+    margin-top: 1em;
+}
+
+div.hot-data {
+    text-align: center;
+    margin-top: 2em;
+}
+div.comment-area{
+    margin-top: 2em;
+}
+h3.comment-area-title{
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 0.4em;
+}
